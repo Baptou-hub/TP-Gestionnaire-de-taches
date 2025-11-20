@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Application web de gestion de tâches développée avec MongoDB, Node.js, Express et JavaScript vanilla.",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
