@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestionnaire de Tâches</title>
+    <title>Mes Missions du Jour</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="texture-bg"></div>
+
     <div class="container">
         <header>
-            <h1>📋 Gestionnaire de Tâches</h1>
-            <button id="btnNouvelletache" class="btn btn-primary">➕ Nouvelle Tâche</button>
+            <h1 class="title">Mes Missions du Jour</h1>
+            <button id="btnNouvelletache" class="btn btn-primary">✏️ Nouvelle Mission</button>
         </header>
 
         <!-- Section Filtres -->
         <section class="filters">
-            <h2>🔍 Filtres et Recherche</h2>
+            <h2>Filtrer mes missions</h2>
             <div class="filter-grid">
-                <input type="text" id="searchQuery" placeholder="Rechercher...">
+                <input type="text" id="searchQuery" placeholder="Rechercher une mission...">
                 
                 <select id="filterStatut">
                     <option value="">Tous les statuts</option>
-                    <option value="à faire">À faire</option>
-                    <option value="en cours">En cours</option>
-                    <option value="terminée">Terminée</option>
-                    <option value="annulée">Annulée</option>
+                    <option value="à faire">À accomplir</option>
+                    <option value="en cours">En progression</option>
+                    <option value="terminée">Mission accomplie</option>
+                    <option value="annulée">Mission annulée</option>
                 </select>
                 
                 <select id="filterPriorite">
                     <option value="">Toutes priorités</option>
-                    <option value="basse">Basse</option>
-                    <option value="moyenne">Moyenne</option>
-                    <option value="haute">Haute</option>
+                    <option value="basse">Faible</option>
+                    <option value="moyenne">Normale</option>
+                    <option value="haute">Importante</option>
                     <option value="critique">Critique</option>
                 </select>
                 
@@ -45,7 +51,7 @@
                 
                 <select id="sortBy">
                     <option value="dateCreation">Date de création</option>
-                    <option value="echeance">Date d'échéance</option>
+                    <option value="echeance">Échéance</option>
                     <option value="priorite">Priorité</option>
                 </select>
                 
@@ -59,23 +65,21 @@
             </div>
         </section>
 
-        <!-- Liste des tâches -->
         <section class="tasks-list">
-            <h2>📝 Mes Tâches <span id="taskCount">(0)</span></h2>
+            <h2>Toutes mes Missions <span id="taskCount">(0)</span></h2>
             <div id="tasksContainer"></div>
         </section>
     </div>
 
-    <!-- Modal Formulaire Tâche -->
     <div id="taskModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2 id="modalTitle">Nouvelle Tâche</h2>
+            <h2 id="modalTitle">Nouvelle Mission</h2>
             <form id="taskForm">
                 <input type="hidden" id="taskId">
-                
+
                 <div class="form-group">
-                    <label for="titre">Titre *</label>
+                    <label for="titre">Titre de la mission *</label>
                     <input type="text" id="titre" required>
                 </div>
                 
@@ -83,7 +87,7 @@
                     <label for="description">Description *</label>
                     <textarea id="description" rows="4" required></textarea>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="echeance">Échéance *</label>
@@ -93,21 +97,21 @@
                     <div class="form-group">
                         <label for="statut">Statut</label>
                         <select id="statut">
-                            <option value="à faire">À faire</option>
-                            <option value="en cours">En cours</option>
-                            <option value="terminée">Terminée</option>
-                            <option value="annulée">Annulée</option>
+                            <option value="à faire">À accomplir</option>
+                            <option value="en cours">En progression</option>
+                            <option value="terminée">Mission accomplie</option>
+                            <option value="annulée">Mission annulée</option>
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="priorite">Priorité</label>
                         <select id="priorite">
-                            <option value="basse">Basse</option>
-                            <option value="moyenne">Moyenne</option>
-                            <option value="haute">Haute</option>
+                            <option value="basse">Faible</option>
+                            <option value="moyenne">Normale</option>
+                            <option value="haute">Importante</option>
                             <option value="critique">Critique</option>
                         </select>
                     </div>
@@ -122,30 +126,30 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="etiquettes">Étiquettes (séparées par des virgules)</label>
-                    <input type="text" id="etiquettes" placeholder="urgent, important, ...">
+                    <label for="etiquettes">Étiquettes (ex : urgent, important...) </label>
+                    <input type="text" id="etiquettes">
                 </div>
-                
+
                 <h3>Auteur</h3>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="auteurNom">Nom *</label>
                         <input type="text" id="auteurNom" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="auteurPrenom">Prénom *</label>
                         <input type="text" id="auteurPrenom" required>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="auteurEmail">Email *</label>
                     <input type="email" id="auteurEmail" required>
                 </div>
-                
+
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
                     <button type="button" class="btn btn-outline" id="btnAnnuler">Annuler</button>
@@ -154,7 +158,7 @@
         </div>
     </div>
 
-    <!-- Modal Détails Tâche -->
+
     <div id="detailsModal" class="modal">
         <div class="modal-content modal-large">
             <span class="close" id="closeDetails">&times;</span>
