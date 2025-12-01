@@ -1,23 +1,30 @@
 {
   "name": "gestionnaire-taches",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Application de gestion de tâches avec MongoDB, Node.js et Express",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mongodb",
+    "nodejs",
+    "express",
+    "gestionnaire",
+    "taches",
+    "todo"
+  ],
+  "author": "Votre Nom",
   "license": "ISC",
-  "description": "Application web de gestion de tâches développée avec MongoDB, Node.js, Express et JavaScript vanilla.",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "mongoose": "^8.20.0"
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "mongodb": "^7.0.0",
+    "mongoose": "^8.20.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.0.2"
   }
 }
