@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Missions du Jour</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="texture-bg"></div>
+
+    <div class="container">
+        <header>
+            <h1 class="title">Mes Missions du Jour</h1>
+            <button id="btnNouvelletache" class="btn btn-primary">✏️ Nouvelle Mission</button>
+        </header>
+
+        <!-- Section Filtres -->
+        <section class="filters">
+            <h2>Filtrer mes missions</h2>
+            <div class="filter-grid">
+                <input type="text" id="searchQuery" placeholder="Rechercher une mission...">
+                
+                <select id="filterStatut">
+                    <option value="">Tous les statuts</option>
+                    <option value="à faire">À accomplir</option>
+                    <option value="en cours">En progression</option>
+                    <option value="terminée">Mission accomplie</option>
+                    <option value="annulée">Mission annulée</option>
+                </select>
+                
+                <select id="filterPriorite">
+                    <option value="">Toutes priorités</option>
+                    <option value="basse">Faible</option>
+                    <option value="moyenne">Normale</option>
+                    <option value="haute">Importante</option>
+                    <option value="critique">Critique</option>
+                </select>
+                
+                <select id="filterCategorie">
+                    <option value="">Toutes catégories</option>
+                    <option value="perso">Personnel</option>
+                    <option value="travail">Travail</option>
+                    <option value="projet">Projet</option>
+                    <option value="autre">Autre</option>
+                </select>
+                
+                <select id="sortBy">
+                    <option value="dateCreation">Date de création</option>
+                    <option value="echeance">Échéance</option>
+                    <option value="priorite">Priorité</option>
+                </select>
+                
+                <select id="sortOrder">
+                    <option value="asc">Croissant</option>
+                    <option value="desc">Décroissant</option>
+                </select>
+                
+                <button id="btnAppliquerFiltres" class="btn btn-secondary">Appliquer</button>
+                <button id="btnResetFiltres" class="btn btn-outline">Réinitialiser</button>
+            </div>
+        </section>
+
+        <section class="tasks-list">
+            <h2>Toutes mes Missions <span id="taskCount">(0)</span></h2>
+            <div id="tasksContainer"></div>
+        </section>
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Nouvelle Mission</h2>
+            <form id="taskForm">
+                <input type="hidden" id="taskId">
+
+                <div class="form-group">
+                    <label for="titre">Titre de la mission *</label>
+                    <input type="text" id="titre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea id="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="echeance">Échéance *</label>
+                        <input type="date" id="echeance" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="statut">Statut</label>
+                        <select id="statut">
+                            <option value="à faire">À accomplir</option>
+                            <option value="en cours">En progression</option>
+                            <option value="terminée">Mission accomplie</option>
+                            <option value="annulée">Mission annulée</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="priorite">Priorité</label>
+                        <select id="priorite">
+                            <option value="basse">Faible</option>
+                            <option value="moyenne">Normale</option>
+                            <option value="haute">Importante</option>
+                            <option value="critique">Critique</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categorie">Catégorie</label>
+                        <select id="categorie">
+                            <option value="perso">Personnel</option>
+                            <option value="travail">Travail</option>
+                            <option value="projet">Projet</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="etiquettes">Étiquettes (ex : urgent, important...) </label>
+                    <input type="text" id="etiquettes">
+                </div>
+
+                <h3>Auteur</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="auteurNom">Nom *</label>
+                        <input type="text" id="auteurNom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="auteurPrenom">Prénom *</label>
+                        <input type="text" id="auteurPrenom" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="auteurEmail">Email *</label>
+                    <input type="email" id="auteurEmail" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="button" class="btn btn-outline" id="btnAnnuler">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="detailsModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close" id="closeDetails">&times;</span>
+            <div id="taskDetails"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
