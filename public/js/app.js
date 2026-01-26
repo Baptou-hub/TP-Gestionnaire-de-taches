@@ -182,7 +182,7 @@ async function showTaskDetails(id) {
                 
                 <div class="details-section">
                     <h3>Auteur</h3>
-                    <p>${escapeHtml(task.auteur.prenom)} ${escapeHtml(task.auteur.nom)} (${escapeHtml(task.auteur.email)})</p>
+                    <p>👤 ${escapeHtml(task.auteur.prenom)} ${escapeHtml(task.auteur.nom)} (${escapeHtml(task.auteur.email)})</p>
                 </div>
                 
                 ${task.etiquettes && task.etiquettes.length > 0 ? `
